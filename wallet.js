@@ -9,7 +9,142 @@ let isConnecting = false; // Prevent multiple connection attempts
 // Expose the connectWallet function globally for script.js compatibility
 window.connectWalletFromModule = connectWallet;
 
-// Enhanced Wallet connection with realistic functionality
+// Mobile MetaMask detection and connection
+function detectMobileMetaMask() {
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    const isMobile = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent.toLowerCase());
+    
+    if (isMobile) {
+        console.log('📱 Mobile device detected');
+        
+        // Check if MetaMask mobile app is installed
+        const checkMetaMaskMobile = () => {
+            // Try to detect MetaMask mobile app
+            const metamaskUrl = 'metamask://';
+            const link = document.createElement('a');
+            link.href = metamaskUrl;
+            
+            // If we can't open the URL, MetaMask might not be installed
+            try {
+                window.location.href = metamaskUrl;
+                return true;
+            } catch (e) {
+                console.log('MetaMask mobile app not detected');
+                return false;
+            }
+        };
+        
+        return {
+            isMobile: true,
+            hasMetaMask: checkMetaMaskMobile()
+        };
+    }
+    
+    return {
+        isMobile: false,
+        hasMetaMask: false
+    };
+}
+
+// Mobile MetaMask connection
+function connectMobileMetaMask() {
+    console.log('📱 Attempting mobile MetaMask connection...');
+    
+    const mobileInfo = detectMobileMetaMask();
+    
+    if (!mobileInfo.isMobile) {
+        console.log('Not a mobile device, using desktop connection');
+        return connectWallet();
+    }
+    
+    // Show mobile-specific instructions
+    showMobileMetaMaskInstructions();
+    
+    // Create mobile connection options
+    const connectBtn = document.getElementById('connectWalletBtn');
+    if (connectBtn) {
+        // Create a container for mobile options
+        const mobileOptions = document.createElement('div');
+        mobileOptions.id = 'mobile-options';
+        mobileOptions.style.cssText = `
+            display: flex; flex-direction: column; gap: 10px; margin-top: 15px;
+        `;
+        
+        // Option 1: Direct deep link
+        const deepLinkBtn = document.createElement('button');
+        deepLinkBtn.innerHTML = '<i class="fab fa-mobile-alt"></i> Open MetaMask App';
+        deepLinkBtn.onclick = () => {
+            const deepLinkUrl = `https://metamask.app.link/dapp/${window.location.hostname}${window.location.pathname}`;
+            window.open(deepLinkUrl, '_blank');
+            showNotification('Opening MetaMask mobile app...', 'info');
+        };
+        deepLinkBtn.style.cssText = `
+            background: #00ff88; color: #000; border: none; padding: 12px; 
+            border-radius: 8px; cursor: pointer; font-weight: bold;
+        `;
+        
+        // Option 2: QR Code
+        const qrBtn = document.createElement('button');
+        qrBtn.innerHTML = '<i class="fas fa-qrcode"></i> Show QR Code';
+        qrBtn.onclick = generateMobileQRCode;
+        qrBtn.style.cssText = `
+            background: #ffaa00; color: #000; border: none; padding: 12px; 
+            border-radius: 8px; cursor: pointer; font-weight: bold;
+        `;
+        
+        // Option 3: Demo Mode
+        const demoBtn = document.createElement('button');
+        demoBtn.innerHTML = '<i class="fas fa-play"></i> Try Demo Mode';
+        demoBtn.onclick = connectDemoWallet;
+        demoBtn.style.cssText = `
+            background: #ff6b6b; color: #fff; border: none; padding: 12px; 
+            border-radius: 8px; cursor: pointer; font-weight: bold;
+        `;
+        
+        // Add buttons to container
+        mobileOptions.appendChild(deepLinkBtn);
+        mobileOptions.appendChild(qrBtn);
+        mobileOptions.appendChild(demoBtn);
+        
+        // Insert after the connect button
+        connectBtn.parentNode.insertBefore(mobileOptions, connectBtn.nextSibling);
+        
+        // Update main button
+        connectBtn.innerHTML = '<i class="fab fa-mobile-alt"></i> Mobile Options';
+        connectBtn.disabled = true;
+        connectBtn.style.background = '#666';
+    }
+}
+
+// Show mobile MetaMask instructions
+function showMobileMetaMaskInstructions() {
+    const instructions = `
+        <div style="background: #1a1a1a; border: 2px solid #00ff88; border-radius: 10px; padding: 20px; margin: 20px 0; color: white;">
+            <h3 style="color: #00ff88; margin-top: 0;">📱 Mobile MetaMask Instructions</h3>
+            <ol style="text-align: left;">
+                <li>Make sure MetaMask mobile app is installed</li>
+                <li>Click "Open MetaMask App" button below</li>
+                <li>MetaMask app will open automatically</li>
+                <li>Approve the connection in MetaMask</li>
+                <li>Return to this page to see your wallet info</li>
+            </ol>
+            <p style="color: #ffaa00; margin-bottom: 0;">
+                💡 <strong>Tip:</strong> If MetaMask doesn't open, try opening it manually and scanning a QR code
+            </p>
+        </div>
+    `;
+    
+    // Add instructions to the page
+    const web3Section = document.querySelector('.web3-section') || document.querySelector('.wallet-connect');
+    if (web3Section) {
+        const instructionDiv = document.createElement('div');
+        instructionDiv.innerHTML = instructions;
+        instructionDiv.id = 'mobile-instructions';
+        web3Section.appendChild(instructionDiv);
+    }
+}
+
+// Enhanced wallet connection with mobile support
 function connectWallet() {
     console.log('=== WALLET CONNECTION DEBUG ===');
     console.log('connectWallet function called');
@@ -17,7 +152,15 @@ function connectWallet() {
     console.log('Current hostname:', window.location.hostname);
     console.log('Protocol:', window.location.protocol);
     
-    // Check if MetaMask is installed
+    // Check if we're on mobile
+    const mobileInfo = detectMobileMetaMask();
+    
+    if (mobileInfo.isMobile) {
+        console.log('📱 Mobile device detected, using mobile connection');
+        return connectMobileMetaMask();
+    }
+    
+    // Desktop connection logic (existing code)
     if (typeof window.ethereum !== 'undefined') {
         console.log('✅ MetaMask detected');
         console.log('MetaMask version:', window.ethereum.version);
@@ -680,6 +823,53 @@ function connectMetaMaskDirect() {
 
 // Expose the direct connection function globally
 window.connectMetaMaskDirect = connectMetaMaskDirect;
+
+// Generate QR code for mobile connection
+function generateMobileQRCode() {
+    const currentUrl = window.location.href;
+    const qrData = `https://metamask.app.link/dapp/${window.location.hostname}${window.location.pathname}`;
+    
+    // Create QR code using a simple API
+    const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(qrData)}`;
+    
+    const qrModal = `
+        <div id="qr-modal" style="
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.8); z-index: 1000; display: flex; 
+            align-items: center; justify-content: center;
+        ">
+            <div style="
+                background: #1a1a1a; border: 2px solid #00ff88; border-radius: 15px; 
+                padding: 30px; text-align: center; color: white; max-width: 90%;
+            ">
+                <h3 style="color: #00ff88; margin-top: 0;">📱 Connect with MetaMask Mobile</h3>
+                <img src="${qrUrl}" alt="QR Code" style="border: 2px solid #00ff88; border-radius: 10px; margin: 20px 0;">
+                <p>1. Open MetaMask mobile app</p>
+                <p>2. Tap "Scan QR Code"</p>
+                <p>3. Scan this QR code</p>
+                <p>4. Approve the connection</p>
+                <button onclick="closeQRModal()" style="
+                    background: #00ff88; color: #000; border: none; padding: 10px 20px; 
+                    border-radius: 5px; cursor: pointer; margin-top: 15px;
+                ">Close</button>
+            </div>
+        </div>
+    `;
+    
+    document.body.insertAdjacentHTML('beforeend', qrModal);
+}
+
+// Close QR modal
+function closeQRModal() {
+    const modal = document.getElementById('qr-modal');
+    if (modal) {
+        modal.remove();
+    }
+}
+
+// Expose functions globally
+window.generateMobileQRCode = generateMobileQRCode;
+window.closeQRModal = closeQRModal;
 
 
  
