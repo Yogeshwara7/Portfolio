@@ -1,0 +1,13 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "Yogeshwara B - Web3 Developer Portfolio",
+  "scripts": {
+    "start": "http-server . -p 8080",
+    "start-https": "http-server . -p 3000 -S -C certificates/cert.pem -K certificates/key.pem",
+    "setup-https": "mkdir -p certificates && openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout certificates/key.pem -out certificates/cert.pem -subj \"/C=US/ST=State/L=City/O=Organization/CN=localhost\""
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+} 
