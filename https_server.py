@@ -66,13 +66,15 @@ if not os.path.exists('certificates/cert.pem'):
 PORT = 3000  # Changed from 8443 to 3000 for better MetaMask compatibility
 Handler = http.server.SimpleHTTPRequestHandler
 
-with socketserver.TCPServer(("", PORT), Handler) as httpd:
+with socketserver.TCPServer(("0.0.0.0", PORT), Handler) as httpd:  # Changed from "" to "0.0.0.0"
     context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
     context.load_cert_chain("certificates/cert.pem", "certificates/key.pem")
     httpd.socket = context.wrap_socket(httpd.socket, server_side=True)
     
     print(f"Serving at https://localhost:{PORT}")
+    print(f"Network access: https://[YOUR_IP]:{PORT}")
     print("Note: You may see a security warning in your browser - this is normal for self-signed certificates")
     print("Click 'Advanced' -> 'Proceed to localhost' to continue")
     print("✅ Using port 3000 - MetaMask should connect more reliably!")
+    print("📱 For mobile access, use your computer's IP address instead of localhost")
     httpd.serve_forever() 
