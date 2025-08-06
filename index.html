@@ -174,13 +174,62 @@
         </div>
     </section>
 
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            
+            <div class="about-content">
+                <div class="about-terminal">
+                    <div class="terminal-line">
+                        <span class="prompt">$</span>
+                        <span class="command">echo "I build secure, smart, and decentralized systems."</span>
+                    </div>
+                    <div class="terminal-line">
+                        <span class="output">I build secure, smart, and decentralized systems.</span>
+                    </div>
+                    <div class="terminal-line">
+                        <span class="prompt">$</span>
+                        <span class="command">./interests --list</span>
+                    </div>
+                    <div class="terminal-line">
+                        <span class="output">[ 'Web3', 'IoT', 'ML', 'Security', 'Games' ]</span>
+                    </div>
+                    <div class="terminal-line">
+                        <span class="prompt">$</span>
+                        <span class="command">./education --show</span>
+                    </div>
+                    <div class="terminal-line">
+                        <span class="output">Computer Science & Engineering</span>
+                    </div>
+                    <div class="terminal-line">
+                        <span class="output">Alvas Institute of Engineering and Technology</span>
+                    </div>
+                </div>
+
+                <div class="about-highlights">
+                    <h3>Highlights</h3>
+                    <ul class="highlights-list">
+                        <li><i class="fas fa-comments"></i> Strong Communication Skills with Presence of Mind in Decision Making</li>
+                        <li><i class="fas fa-crown"></i> Leadership Qualities & Team Management</li>
+                        <li><i class="fas fa-brain"></i> Understanding Human Psychology & Behavioral Patterns</li>
+                        <li><i class="fas fa-code"></i> Full-Stack Web Development</li>
+                        <li><i class="fab fa-ethereum"></i> Blockchain/Web3 Specialist</li>
+                        <li><i class="fas fa-microchip"></i> IoT Enthusiast</li>
+                        <li><i class="fas fa-brain"></i> Machine Learning Explorer</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
     <!-- Projects Section -->
     <section id="projects" class="projects">
         <div class="container">
             <h2 class="section-title">Featured Projects</h2>
-            <div style="margin-bottom: 10px; font-weight: bold;">
-                <span id="projectCount"></span> Projects
-            </div>
+           
             <div class="project-filters">
                 <button class="filter-btn active" data-filter="all">All Projects</button>
                 <button class="filter-btn" data-filter="web3">Web3</button>
@@ -375,6 +424,7 @@
                     <h3>Guess the Hash</h3>
                     <p>Guess the input string from SHA256 hash</p>
                     <div class="game-content">
+                        <div id="targetHash" class="hash-to-guess" style="margin-top: 10px; color: #ff0080; background: #1a001a; padding: 8px; border-radius: 6px; word-break: break-all; font-size: 13px; text-align: left;"></div>
                         <input type="text" id="guessHashInput" placeholder="Enter your guess..." class="game-input">
                         <button onclick="guessHash()" class="game-btn">Guess</button>
                         <div id="guessHashResult" class="game-result"></div>
@@ -568,55 +618,6 @@ contract Vulnerable {
                         <div class="skill-item" data-skill="VS Code">VS Code</div>
                         <div class="skill-item" data-skill="Maven">Maven</div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2 class="section-title">About Me</h2>
-            
-            <div class="about-content">
-                <div class="about-terminal">
-                    <div class="terminal-line">
-                        <span class="prompt">$</span>
-                        <span class="command">echo "I build secure, smart, and decentralized systems."</span>
-                    </div>
-                    <div class="terminal-line">
-                        <span class="output">I build secure, smart, and decentralized systems.</span>
-                    </div>
-                    <div class="terminal-line">
-                        <span class="prompt">$</span>
-                        <span class="command">./interests --list</span>
-                    </div>
-                    <div class="terminal-line">
-                        <span class="output">[ 'Web3', 'IoT', 'ML', 'Security', 'Games' ]</span>
-                    </div>
-                    <div class="terminal-line">
-                        <span class="prompt">$</span>
-                        <span class="command">./education --show</span>
-                    </div>
-                    <div class="terminal-line">
-                        <span class="output">Computer Science & Engineering</span>
-                    </div>
-                    <div class="terminal-line">
-                        <span class="output">Alvas Institute of Engineering and Technology</span>
-                    </div>
-                </div>
-
-                <div class="about-highlights">
-                    <h3>Highlights</h3>
-                    <ul class="highlights-list">
-                        <li><i class="fas fa-comments"></i> Strong Communication Skills with Presence of Mind in Decision Making</li>
-                        <li><i class="fas fa-crown"></i> Leadership Qualities & Team Management</li>
-                        <li><i class="fas fa-brain"></i> Understanding Human Psychology & Behavioral Patterns</li>
-                        <li><i class="fas fa-code"></i> Full-Stack Web Development</li>
-                        <li><i class="fab fa-ethereum"></i> Blockchain/Web3 Specialist</li>
-                        <li><i class="fas fa-microchip"></i> IoT Enthusiast</li>
-                        <li><i class="fas fa-brain"></i> Machine Learning Explorer</li>
-                    </ul>
                 </div>
             </div>
         </div>

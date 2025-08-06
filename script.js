@@ -531,8 +531,8 @@ async function loadCryptoData() {
     } catch (error) {
         console.error('❌ Error fetching crypto data:', error);
         
-        // Show user-friendly message about using mock data
-        showNotification('Using demo crypto prices (API blocked by CORS)', 'info');
+        // Removed notification to avoid popup clutter
+        // showNotification('Using demo crypto prices (API blocked by CORS)', 'info');
         
         // Fallback to realistic mock data with some variation
         const mockPrices = generateMockCryptoPrices();
@@ -570,8 +570,8 @@ async function loadGasData() {
     } catch (error) {
         console.error('❌ Error fetching gas data:', error);
         
-        // Show user-friendly message
-        showNotification('Using demo gas prices (API requires setup)', 'info');
+        // Removed notification to avoid popup clutter
+        // showNotification('Using demo gas prices (API requires setup)', 'info');
         
         // Generate realistic mock gas prices
         const mockGas = generateMockGasPrices();
@@ -623,29 +623,70 @@ async function generateHash() {
 
 // Playground Games
 
-// Guess the Hash game
-function guessHash() {
+// --- Guess the Hash game ---
+
+// List of possible words
+const guessWords = ['hello', 'blockchain', 'web3'];
+let targetWord = '';
+let targetHash = '';
+
+// Utility: Compute SHA256 hash and return hex string
+async function sha256Hex(str) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(str);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+// Pick a random word and compute its hash
+async function setupGuessHashGame() {
+    // Pick random word
+    targetWord = guessWords[Math.floor(Math.random() * guessWords.length)];
+    targetHash = await sha256Hex(targetWord);
+    // Display the hash in the UI
+    let hashElem = document.getElementById('targetHash');
+    if (!hashElem) {
+        // Create the element if it doesn't exist
+        hashElem = document.createElement('div');
+        hashElem.id = 'targetHash';
+        hashElem.className = 'hash-to-guess';
+        // Insert above the input
+        const inputBox = document.getElementById('guessHashInput');
+        if (inputBox && inputBox.parentNode) {
+            inputBox.parentNode.insertBefore(hashElem, inputBox);
+        }
+    }
+    hashElem.textContent = targetHash;
+}
+
+// Guess the Hash game logic
+async function guessHash() {
     const guess = document.getElementById('guessHashInput').value;
     const result = document.getElementById('guessHashResult');
-    
     if (guess.trim() === '') {
         result.textContent = 'Please enter a guess';
+        result.style.color = '';
         return;
     }
-    
-    // Simple hash check (in real app, use proper hashing)
-    const targetHash = 'hello'; // Simple target
-    const guessHash = btoa(guess).replace(/[^a-zA-Z0-9]/g, '').substring(0, 5);
-    
-    if (guess.toLowerCase() === targetHash) {
+    // Hash the user's guess
+    const guessHashVal = await sha256Hex(guess.trim());
+    if (guessHashVal === targetHash) {
         result.textContent = '🎉 Correct! You guessed it!';
         result.style.color = '#00ff88';
         playSound('success');
     } else {
-        result.textContent = `❌ Wrong! Hash: ${guessHash}`;
+        result.textContent = `❌ Wrong!`;
         result.style.color = '#ff0080';
         playSound('error');
     }
+}
+
+// On page load, set up the game
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupGuessHashGame);
+} else {
+    setupGuessHashGame();
 }
 
 // Mine the Block game
@@ -1382,7 +1423,9 @@ ${currentDir.files.map(f => f.hidden ? '' : f.name).filter(f => f).join('\n')}`;
                 { name: 'arbinet.md', type: 'file', permissions: '-rw-r--r--', size: '5KB', date: '2024-01-15', hidden: false },
                 { name: 'crowdfunding.md', type: 'file', permissions: '-rw-r--r--', size: '4KB', date: '2024-01-15', hidden: false },
                 { name: 'bird-classifier.md', type: 'file', permissions: '-rw-r--r--', size: '3KB', date: '2024-01-15', hidden: false },
-                { name: 'coffee-system.md', type: 'file', permissions: '-rw-r--r--', size: '2KB', date: '2024-01-15', hidden: false }
+                { name: 'coffee-system.md', type: 'file', permissions: '-rw-r--r--', size: '2KB', date: '2024-01-15', hidden: false },
+                { name: 'vegetation-monitoring.md', type: 'file', permissions: '-rw-r--r--', size: '4KB', date: '2024-01-15', hidden: false },
+                { name: 'llm-ner-testing.md', type: 'file', permissions: '-rw-r--r--', size: '3KB', date: '2024-01-15', hidden: false }
             ]
         },
         '/home/yogeshwara/skills': {

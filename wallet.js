@@ -749,20 +749,23 @@ function testWalletConnection() {
             console.log('🔍 Multiple wallets detected:', walletNames);
             metaMaskFound = window.ethereum.providers.some(p => p.isMetaMask);
             
-            if (metaMaskFound) {
-                showNotification(`MetaMask found among ${walletNames.length} wallets. Click "Connect Wallet" to connect.`, 'success');
-            } else {
-                showNotification(`${walletNames.length} wallets detected but MetaMask not found. Please install MetaMask.`, 'warning');
-            }
-        } else if (window.ethereum.isMetaMask) {
+            // Removed notifications to avoid popup clutter
+            // if (metaMaskFound) {
+            //     showNotification(`MetaMask found among ${walletNames.length} wallets. Click "Connect Wallet" to connect.`, 'success');
+            // } else {
+            //     showNotification(`${walletNames.length} wallets detected but MetaMask not found. Please install MetaMask.`, 'warning');
+            // }
+                } else if (window.ethereum.isMetaMask) {
             // Single MetaMask detected
-        console.log('✅ MetaMask detected - ready for connection');
+            console.log('✅ MetaMask detected - ready for connection');
             metaMaskFound = true;
-        showNotification('MetaMask detected! Click "Connect Wallet" to connect.', 'success');
-    } else {
+            // Removed notification to avoid popup clutter
+            // showNotification('MetaMask detected! Click "Connect Wallet" to connect.', 'success');
+        } else {
             // Single non-MetaMask wallet
             console.log('⚠️ Non-MetaMask wallet detected');
-            showNotification('Non-MetaMask wallet detected. Please install MetaMask for full compatibility.', 'warning');
+            // Removed notification to avoid popup clutter
+            // showNotification('Non-MetaMask wallet detected. Please install MetaMask for full compatibility.', 'warning');
         }
     } else {
         console.log('❌ No Ethereum wallet detected');

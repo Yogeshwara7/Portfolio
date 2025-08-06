@@ -2043,41 +2043,91 @@ textarea:focus {
 }
 
 .light-theme .terminal-intro {
-    background: var(--bg-card);
-    border: 1px solid #e0e0e0;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background: #1a1a1a;
+    border: 2px solid #00ff88;
+    box-shadow: 0 8px 32px rgba(0, 255, 136, 0.3);
+    color: #ffffff;
 }
 
 .light-theme .terminal-header {
-    background: #f8f9fa;
-    border-bottom: 1px solid #e0e0e0;
+    background: #1a1a1a;
+    border-bottom: 1px solid #00ff88;
+    color: #ffffff;
+}
+
+.light-theme .terminal-dot.red {
+    background: #ff5f56;
+}
+
+.light-theme .terminal-dot.yellow {
+    background: #ffbd2e;
+}
+
+.light-theme .terminal-dot.green {
+    background: #27ca3f;
+}
+
+.light-theme .terminal-title {
+    color: #ffffff;
 }
 
 .light-theme .terminal-line {
-    color: var(--text-primary);
+    color: #ffffff;
 }
 
 .light-theme .prompt {
-    color: var(--primary-color);
+    color: #00ff88;
 }
 
 .light-theme .command {
-    color: var(--text-primary);
+    color: #ffffff;
 }
 
 .light-theme .output {
-    color: var(--text-secondary);
+    color: #cccccc;
 }
 
 .light-theme .terminal-input {
     background: transparent;
-    color: var(--text-primary);
-    border: 1px solid #e0e0e0;
+    color: #ffffff;
+    border: 1px solid #00ff88;
 }
 
 .light-theme .terminal-input:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 10px rgba(139, 69, 19, 0.3);
+    border-color: #00ff88;
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
+    outline: none;
+}
+
+.light-theme .terminal-input::placeholder {
+    color: #888888;
+}
+
+.light-theme .terminal-body {
+    background: #1a1a1a;
+    color: #ffffff;
+}
+
+.light-theme .terminal-body::-webkit-scrollbar-track {
+    background: #1a1a1a;
+}
+
+.light-theme .terminal-body::-webkit-scrollbar-thumb {
+    background: #00ff88;
+    border-radius: 4px;
+}
+
+.light-theme .terminal-body::-webkit-scrollbar-thumb:hover {
+    background: #00cc6a;
+}
+
+.light-theme .terminal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.light-theme .terminal-body::-webkit-scrollbar-track {
+    background: #1a1a1a;
+    border-radius: 4px;
 }
 
 .light-theme .btn {
