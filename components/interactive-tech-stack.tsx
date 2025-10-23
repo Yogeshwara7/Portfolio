@@ -372,18 +372,18 @@ export default function InteractiveTechStack({ className = "", spreadContainerRe
     >
       {/* Title moved onto the border as a floating label */}
 
-      <div ref={activeAreaRef} className="space-y-6 relative p-6 pt-10" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={(e) => e.stopPropagation()}>
-        <div className={`absolute -top-3 left-4 px-2 py-0.5 text-sm font-bold font-mono ${isHovered ? 'text-red-400' : 'text-green-400'} bg-black/0`}>{'{ } TECH STACK'}</div>
-        <div className="space-y-3">
-          <h3 className={`text-sm font-semibold text-gray-400 tech-item transition-colors duration-300 ${isDismantled ? 'text-red-400' : ''}`}>
+      <div ref={activeAreaRef} className="space-y-4 lg:space-y-6 relative p-4 lg:p-6 pt-8 lg:pt-10" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={(e) => e.stopPropagation()}>
+        <div className={`absolute -top-2 lg:-top-3 left-3 lg:left-4 px-2 py-0.5 text-xs lg:text-sm font-bold font-mono ${isHovered ? 'text-red-400' : 'text-green-400'} bg-black/0`}>{'{ } TECH STACK'}</div>
+        <div className="space-y-2 lg:space-y-3">
+          <h3 className={`text-xs lg:text-sm font-semibold text-gray-400 tech-item transition-colors duration-300 ${isDismantled ? 'text-red-400' : ''}`}>
             Frontend Technologies:
           </h3>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-1.5 lg:gap-2">
             {frontendTechs.map((tech, index) => (
               <span
                 key={tech}
                 ref={(el) => { techRefs.current[index] = el }}
-                className={`tech-item px-3 py-1 text-xs font-mono bg-zinc-900 text-gray-300 rounded-md hover:bg-green-500 hover:text-black transition-all duration-300 cursor-pointer border border-zinc-800 ${isDismantled ? 'bg-red-900 text-red-300 border-red-600 shadow-lg shadow-red-500/20' : ''
+                className={`tech-item px-2 lg:px-3 py-1 text-xs font-mono bg-zinc-900 text-gray-300 rounded-md hover:bg-green-500 hover:text-black transition-all duration-300 cursor-pointer border border-zinc-800 ${isDismantled ? 'bg-red-900 text-red-300 border-red-600 shadow-lg shadow-red-500/20' : ''
                   }`}
               >
                 {tech}
@@ -392,16 +392,16 @@ export default function InteractiveTechStack({ className = "", spreadContainerRe
           </div>
         </div>
 
-        <div className="space-y-3">
-          <h3 className={`text-sm font-semibold text-gray-400 tech-item transition-colors duration-300 ${isDismantled ? 'text-red-400' : ''}`}>
+        <div className="space-y-2 lg:space-y-3">
+          <h3 className={`text-xs lg:text-sm font-semibold text-gray-400 tech-item transition-colors duration-300 ${isDismantled ? 'text-red-400' : ''}`}>
             Backend & Web3 Development:
           </h3>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-1.5 lg:gap-2">
             {backendTechs.map((tech, index) => (
               <span
                 key={tech}
                 ref={(el) => { techRefs.current[frontendTechs.length + index] = el }}
-                className={`tech-item px-3 py-1 text-xs font-mono bg-zinc-900 text-gray-300 rounded-md hover:bg-green-500 hover:text-black transition-all duration-300 cursor-pointer border border-zinc-800 ${isDismantled ? 'bg-red-900 text-red-300 border-red-600 shadow-lg shadow-red-500/20' : ''
+                className={`tech-item px-2 lg:px-3 py-1 text-xs font-mono bg-zinc-900 text-gray-300 rounded-md hover:bg-green-500 hover:text-black transition-all duration-300 cursor-pointer border border-zinc-800 ${isDismantled ? 'bg-red-900 text-red-300 border-red-600 shadow-lg shadow-red-500/20' : ''
                   }`}
               >
                 {tech}
@@ -410,16 +410,16 @@ export default function InteractiveTechStack({ className = "", spreadContainerRe
           </div>
         </div>
 
-        <div className="space-y-3">
-          <h3 className={`text-sm font-semibold text-gray-400 tech-item transition-colors duration-300 ${isDismantled ? 'text-red-400' : ''}`}>
+        <div className="space-y-2 lg:space-y-3">
+          <h3 className={`text-xs lg:text-sm font-semibold text-gray-400 tech-item transition-colors duration-300 ${isDismantled ? 'text-red-400' : ''}`}>
             Development Tools & Platforms:
           </h3>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-1.5 lg:gap-2">
             {toolsTechs.map((tech, index) => (
               <span
                 key={tech}
                 ref={(el) => { techRefs.current[frontendTechs.length + backendTechs.length + index] = el }}
-                className={`tech-item px-3 py-1 text-xs font-mono bg-zinc-900 text-gray-300 rounded-md hover:bg-green-500 hover:text-black transition-all duration-300 cursor-pointer border border-zinc-800 ${isDismantled ? 'bg-red-900 text-red-300 border-red-600 shadow-lg shadow-red-500/20' : ''
+                className={`tech-item px-2 lg:px-3 py-1 text-xs font-mono bg-zinc-900 text-gray-300 rounded-md hover:bg-green-500 hover:text-black transition-all duration-300 cursor-pointer border border-zinc-800 ${isDismantled ? 'bg-red-900 text-red-300 border-red-600 shadow-lg shadow-red-500/20' : ''
                   }`}
               >
                 {tech}
@@ -432,9 +432,9 @@ export default function InteractiveTechStack({ className = "", spreadContainerRe
       </div>
 
       {/* Resume CTA placed BELOW the section */}
-      <div className="mt-4">
-        <a href="/resume" className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-green-500 text-black font-semibold hover:bg-green-400 transition-colors">
-          <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v12m0 0l-3-3m3 3l3-3M6 20h12"/></svg>
+      <div className="mt-3 lg:mt-4">
+        <a href="/resume" className="inline-flex items-center gap-2 px-3 lg:px-4 py-2 rounded-md bg-green-500 text-black font-semibold hover:bg-green-400 transition-colors text-sm lg:text-base">
+          <svg className="h-3 w-3 lg:h-4 lg:w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v12m0 0l-3-3m3 3l3-3M6 20h12"/></svg>
           <span>View Resume</span>
         </a>
       </div>

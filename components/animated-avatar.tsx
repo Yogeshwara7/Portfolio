@@ -171,32 +171,32 @@ export default function AnimatedAvatar({ className = "" }: AnimatedAvatarProps) 
     }
 
     return (
-        <div ref={avatarRef} className={`relative ${className}`} onMouseEnter={() => { setIsHover(true); lastActivityRef.current = performance.now(); if (isSleeping) setIsSleeping(false) }} onMouseLeave={() => setIsHover(false)} onClick={handleClick}>
+        <div ref={avatarRef} className={`relative flex items-center justify-center ${className}`} onMouseEnter={() => { setIsHover(true); lastActivityRef.current = performance.now(); if (isSleeping) setIsSleeping(false) }} onMouseLeave={() => setIsHover(false)} onClick={handleClick}>
             {/* Face */}
             <div className="relative" style={{ perspective: 800 }}>
                 <div ref={ringRef} className={`absolute -inset-2 rounded-full border-4 ${isHover ? 'border-green-400' : 'border-green-500'} shadow-[0_0_60px_rgba(34,197,94,0.45)] transition-transform duration-150 pointer-events-none`}></div>
-                <div ref={faceRef} className={`relative w-64 h-64 rounded-full border-4 ${isHover ? 'border-green-400' : 'border-green-500'} shadow-[0_0_50px_rgba(34,197,94,0.5)] ${theme === 'dark' ? 'bg-gradient-to-br from-zinc-900 to-black' : 'bg-gradient-to-br from-gray-100 to-white'} flex items-center justify-center transition-transform duration-150 will-change-transform [transform-style:preserve-3d]`}>
+                <div ref={faceRef} className={`relative w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 rounded-full border-4 ${isHover ? 'border-green-400' : 'border-green-500'} shadow-[0_0_50px_rgba(34,197,94,0.5)] ${theme === 'dark' ? 'bg-gradient-to-br from-zinc-900 to-black' : 'bg-gradient-to-br from-gray-100 to-white'} flex items-center justify-center transition-transform duration-150 will-change-transform [transform-style:preserve-3d]`}>
 
                 {/* Left Eye */}
-                <div className={`absolute left-16 w-12 h-12 ${theme === 'dark' ? 'bg-white' : 'bg-gray-800'} rounded-full flex items-center justify-center overflow-hidden`}>
+                <div className={`absolute left-12 sm:left-14 lg:left-16 w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 ${theme === 'dark' ? 'bg-white' : 'bg-gray-800'} rounded-full flex items-center justify-center overflow-hidden`}>
                     <div ref={leftLidRef} className={`absolute inset-0 ${theme === 'dark' ? 'bg-zinc-900/95' : 'bg-gray-100/95'} transition-all duration-150 ${isBlinking || isSleeping ? 'translate-y-0' : '-translate-y-full'}`}></div>
                     <div
                         ref={leftEyeRef}
-                        className={`w-6 h-6 ${theme === 'dark' ? 'bg-black' : 'bg-white'} rounded-full transition-transform duration-100 ease-out`}
+                        className={`w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 ${theme === 'dark' ? 'bg-black' : 'bg-white'} rounded-full transition-transform duration-100 ease-out`}
                     ></div>
                 </div>
 
                 {/* Right Eye */}
-                <div className={`absolute right-16 w-12 h-12 ${theme === 'dark' ? 'bg-white' : 'bg-gray-800'} rounded-full flex items-center justify-center overflow-hidden`}>
+                <div className={`absolute right-12 sm:right-14 lg:right-16 w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 ${theme === 'dark' ? 'bg-white' : 'bg-gray-800'} rounded-full flex items-center justify-center overflow-hidden`}>
                     <div ref={rightLidRef} className={`absolute inset-0 ${theme === 'dark' ? 'bg-zinc-900/95' : 'bg-gray-100/95'} transition-all duration-150 ${isBlinking || isSleeping ? 'translate-y-0' : '-translate-y-full'}`}></div>
                     <div
                         ref={rightEyeRef}
-                        className={`w-6 h-6 ${theme === 'dark' ? 'bg-black' : 'bg-white'} rounded-full transition-transform duration-100 ease-out`}
+                        className={`w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 ${theme === 'dark' ? 'bg-black' : 'bg-white'} rounded-full transition-transform duration-100 ease-out`}
                     ></div>
                 </div>
 
                 {/* Mouth */}
-                <div ref={mouthRef} className={`absolute bottom-14 ${isSleeping ? 'w-10 h-1 rounded-full' : isSurprised ? 'w-6 h-6 rounded-full' : 'w-16 h-2 rounded-b-full'} ${theme === 'dark' ? 'bg-white/90' : 'bg-gray-800/90'} transition-all duration-200`}></div>
+                <div ref={mouthRef} className={`absolute bottom-10 sm:bottom-12 lg:bottom-14 ${isSleeping ? 'w-8 h-1 sm:w-10 sm:h-1 rounded-full' : isSurprised ? 'w-5 h-5 sm:w-6 sm:h-6 rounded-full' : 'w-12 h-2 sm:w-14 sm:h-2 lg:w-16 lg:h-2 rounded-b-full'} ${theme === 'dark' ? 'bg-white/90' : 'bg-gray-800/90'} transition-all duration-200`}></div>
 
                 {/* Animated glow effect */}
                 <div className="absolute inset-0 rounded-full bg-green-500/10 animate-pulse"></div>

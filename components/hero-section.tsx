@@ -123,33 +123,33 @@ export default function HeroSection() {
 
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#1a1a1a_1px,transparent_1px),linear-gradient(to_bottom,#1a1a1a_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-30 [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_70%,transparent_110%)]" />
 
-      <div ref={heroGridRef} className="relative z-10 grid grid-cols-1 lg:grid-cols-[280px_1fr_320px] gap-6 lg:gap-8 p-6 lg:p-8 max-w-7xl mx-auto min-h-screen">
+      <div ref={heroGridRef} className="relative z-10 grid grid-cols-1 lg:grid-cols-[280px_1fr_320px] gap-4 lg:gap-8 p-4 lg:p-8 max-w-7xl mx-auto min-h-screen">
         {/* Tech Stack - Hidden on mobile, shown on desktop in left column */}
         <div className="hidden lg:flex lg:items-center lg:justify-center">
           <InteractiveTechStack spreadContainerRef={heroGridRef as unknown as React.RefObject<HTMLDivElement>} />
         </div>
 
-        <div ref={profileRef} className="flex flex-col items-center justify-center space-y-8 max-w-2xl mx-auto order-1 lg:order-none">
-          <div className="profile-content relative">
+        <div ref={profileRef} className="flex flex-col items-center justify-center space-y-6 lg:space-y-8 max-w-2xl mx-auto order-1 lg:order-none px-4">
+          <div className="profile-content relative flex items-center justify-center hidden sm:flex">
             <div className="absolute inset-0 rounded-full bg-green-500/20 blur-2xl animate-pulse" />
             <AnimatedAvatar className="profile-image" />
           </div>
 
           <div className="profile-content text-center space-y-2">
-            <h1 className="text-5xl font-bold text-black dark:text-white">Yogeshwara B</h1>
-            <div className="flex items-center justify-center gap-2">
-              <span className="text-xl text-gray-700 dark:text-gray-300">Hey,</span>
-              <span className="text-xl">👋</span>
-              <span className="text-xl text-gray-700 dark:text-gray-300">I&apos;m a</span>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black dark:text-white">Yogeshwara B</h1>
+            <div className="flex flex-wrap items-center justify-center gap-1 sm:gap-2">
+              <span className="text-lg sm:text-xl text-gray-700 dark:text-gray-300">Hey,</span>
+              <span className="text-lg sm:text-xl">👋</span>
+              <span className="text-lg sm:text-xl text-gray-700 dark:text-gray-300">I&apos;m a</span>
               <span className="title-flip">
-                <span className="text-xl font-semibold text-green-400 title-flip-item" key={titleIndex}>
+                <span className="text-lg sm:text-xl font-semibold text-green-400 title-flip-item" key={titleIndex}>
                   {titles[titleIndex]}
                 </span>
               </span>
             </div>
           </div>
 
-          <div className="profile-content flex items-center gap-3 text-sm font-mono text-gray-600 dark:text-gray-400">
+          <div className="profile-content flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs sm:text-sm font-mono text-gray-600 dark:text-gray-400">
             {currentDate && <span>{currentDate}</span>}
             {currentDate && <span>•</span>}
             {currentTime && <span>{currentTime}</span>}
@@ -160,7 +160,7 @@ export default function HeroSection() {
             </div>
           </div>
 
-          <p className="profile-content text-center text-gray-600 dark:text-gray-400 leading-relaxed max-w-xl">
+          <p className="profile-content text-center text-gray-600 dark:text-gray-400 leading-relaxed max-w-xl text-sm sm:text-base px-4">
             I craft fast, scalable, and user-friendly web applications with modern JavaScript frameworks - combining
             React on the frontend with robust server-side solutions using Node.js.
           </p>
@@ -171,9 +171,9 @@ export default function HeroSection() {
           <InteractiveTechStack spreadContainerRef={heroGridRef as unknown as React.RefObject<HTMLDivElement>} />
         </div>
 
-        <div ref={ctaRef} className="flex flex-col justify-center space-y-6 order-3 lg:order-none">
-          <div className="space-y-4">
-            <h3 className="text-xl font-bold text-black dark:text-white">LINKS.</h3>
+        <div ref={ctaRef} className="flex flex-col justify-center space-y-4 lg:space-y-6 order-3 lg:order-none px-4 lg:px-0">
+          <div className="space-y-3 lg:space-y-4">
+            <h3 className="text-lg lg:text-xl font-bold text-black dark:text-white">LINKS.</h3>
             <div className="space-y-2">
               {[
                 { icon: GithubIcon, label: "GitHub", href: "https://github.com/Yogeshwara7" },
@@ -195,12 +195,12 @@ export default function HeroSection() {
           </div>
 
           <a href="/projects" className="block group">
-            <div className="relative overflow-hidden rounded-2xl bg-black dark:bg-gradient-to-br dark:from-zinc-900 dark:via-zinc-900 dark:to-green-950/30 p-8 border border-zinc-800 hover:border-green-500/50 transition-all duration-300 cursor-pointer">
+            <div className="relative overflow-hidden rounded-2xl bg-black dark:bg-gradient-to-br dark:from-zinc-900 dark:via-zinc-900 dark:to-green-950/30 p-6 lg:p-8 border border-zinc-800 hover:border-green-500/50 transition-all duration-300 cursor-pointer">
               <div className="hidden dark:block absolute inset-0 bg-gradient-to-br from-green-500/0 to-green-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="relative space-y-4 text-center">
+              <div className="relative space-y-3 lg:space-y-4 text-center">
                 <div className="inline-block">
-                  <div className="h-16 w-16 mx-auto rounded-full bg-zinc-800 dark:bg-green-500/10 flex items-center justify-center group-hover:bg-zinc-700 dark:group-hover:bg-green-500/20 transition-colors">
-                    <svg className="h-8 w-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="h-12 w-12 lg:h-16 lg:w-16 mx-auto rounded-full bg-zinc-800 dark:bg-green-500/10 flex items-center justify-center group-hover:bg-zinc-700 dark:group-hover:bg-green-500/20 transition-colors">
+                    <svg className="h-6 w-6 lg:h-8 lg:w-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -211,15 +211,15 @@ export default function HeroSection() {
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-white group-hover:text-green-400 transition-colors">VIEW</h3>
-                  <h3 className="text-2xl font-bold text-white group-hover:text-green-400 transition-colors">
+                  <h3 className="text-xl lg:text-2xl font-bold text-white group-hover:text-green-400 transition-colors">VIEW</h3>
+                  <h3 className="text-xl lg:text-2xl font-bold text-white group-hover:text-green-400 transition-colors">
                     PROJECTS
                   </h3>
                 </div>
-                <p className="text-sm text-gray-400">Explore my latest work</p>
+                <p className="text-xs lg:text-sm text-gray-400">Explore my latest work</p>
                 <div className="flex items-center justify-center gap-2 text-green-500 group-hover:gap-4 transition-all">
-                  <span className="text-sm font-mono">View All</span>
-                  <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <span className="text-xs lg:text-sm font-mono">View All</span>
+                  <svg className="h-3 w-3 lg:h-4 lg:w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
                 </div>
@@ -228,17 +228,17 @@ export default function HeroSection() {
             </div>
           </a>
 
-          <div className="cta-card relative overflow-hidden rounded-2xl bg-gradient-to-br from-zinc-900 to-zinc-950 p-8 border border-zinc-800">
-            <div className="absolute top-4 right-4">
-              <div className="h-3 w-3 rounded-full bg-green-500 animate-pulse" />
+          <div className="cta-card relative overflow-hidden rounded-2xl bg-gradient-to-br from-zinc-900 to-zinc-950 p-6 lg:p-8 border border-zinc-800">
+            <div className="absolute top-3 right-3 lg:top-4 lg:right-4">
+              <div className="h-2 w-2 lg:h-3 lg:w-3 rounded-full bg-green-500 animate-pulse" />
             </div>
-            <div className="space-y-6">
-              <h2 className="text-3xl font-bold leading-tight text-balance text-white">
+            <div className="space-y-4 lg:space-y-6">
+              <h2 className="text-xl lg:text-3xl font-bold leading-tight text-balance text-white">
                 READY TO TAKE YOUR IDEA TO THE NEXT LEVEL?
               </h2>
               <Button
                 size="lg"
-                className="w-full bg-green-500 text-black hover:bg-green-400 font-semibold text-lg py-6"
+                className="w-full bg-green-500 text-black hover:bg-green-400 font-semibold text-sm lg:text-lg py-4 lg:py-6"
                 onClick={() => window.open('mailto:yogeshwara567@gmail.com?subject=Project Inquiry&body=Hi Yogeshwara,%0D%0A%0D%0AI would like to discuss a project with you.%0D%0A%0D%0AProject Details:%0D%0A-%0D%0A-%0D%0A-%0D%0A%0D%0ABest regards', '_blank')}
               >
                 Start Project

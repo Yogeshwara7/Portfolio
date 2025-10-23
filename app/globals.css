@@ -138,3 +138,66 @@
   60% { transform: rotateX(8deg); opacity: 1 }
   100% { transform: rotateX(0deg); opacity: 1 }
 }
+
+/* Mobile-specific improvements */
+@media (max-width: 768px) {
+  /* Improve text readability on mobile */
+  body {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+  
+  /* Better touch targets */
+  button, a, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Prevent horizontal scroll */
+  * {
+    max-width: 100%;
+  }
+  
+  /* Improve line height for mobile reading */
+  p, span, div {
+    line-height: 1.6;
+  }
+  
+  /* Better spacing for mobile */
+  .space-y-8 > * + * {
+    margin-top: 1.5rem;
+  }
+  
+  .space-y-6 > * + * {
+    margin-top: 1rem;
+  }
+}
+
+/* Tablet improvements */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .space-y-8 > * + * {
+    margin-top: 2rem;
+  }
+}
+
+/* Fix for timeline cards text wrapping */
+.project-card h3 {
+  word-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+  white-space: normal;
+  overflow-wrap: break-word;
+  line-height: 1.4;
+}
+
+/* Ensure project cards display properly */
+.project-card {
+  display: block !important;
+  width: 100% !important;
+}
+
+/* Fix for any text stacking issues */
+.project-card * {
+  white-space: normal !important;
+  word-wrap: break-word !important;
+}

@@ -165,7 +165,7 @@ export default function ProjectsPage() {
           ref={headerRef}
           className={`page-header ${theme === 'dark' ? 'border-b border-zinc-800 bg-black/50' : 'border-b border-gray-300 bg-white/50'} backdrop-blur-sm sticky top-0 z-50`}
         >
-          <div className="max-w-7xl mx-auto px-6 py-6 flex items-center justify-between">
+          <div className="max-w-7xl mx-auto px-4 lg:px-6 py-4 lg:py-6 flex items-center justify-between">
             <Link
               href="/"
               className={`flex items-center gap-2 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'} hover:text-green-400 transition-colors group`}
@@ -181,16 +181,16 @@ export default function ProjectsPage() {
               <span className="font-mono text-sm">Back</span>
             </Link>
 
-            <div className="text-center">
-              <h1 className="text-4xl md:text-5xl font-bold font-mono">
+            <div className="text-center flex-1">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold font-mono">
                 <span className="text-green-400">{"<"}</span>
                 PROJECTS
                 <span className="text-green-400">{"/>"}</span>
               </h1>
-              <p className={`${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'} text-sm mt-2 font-mono`}>Showcasing innovation through code</p>
+              <p className={`${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'} text-sm sm:text-base mt-2 lg:mt-3 font-mono`}>Showcasing innovation through code</p>
             </div>
 
-            <div className="w-20" />
+            <div className="w-16 lg:w-20" />
           </div>
           {showProgress && (
             <div className="relative">
@@ -206,43 +206,43 @@ export default function ProjectsPage() {
         </div>
 
         {/* Projects Grid */}
-        <div ref={projectsRef} className="max-w-7xl mx-auto px-6 py-16">
+        <div ref={projectsRef} className="max-w-7xl mx-auto px-4 lg:px-6 py-8 lg:py-16">
           {!loading && !error && (
-          <div className="mb-20">
-            <div className="flex items-center gap-3 mb-8">
-              <div className="h-1 w-12 bg-green-500" />
-              <h2 className="text-2xl font-bold text-green-400 font-mono">FEATURED</h2>
+          <div className="mb-12 lg:mb-20">
+            <div className="flex items-center gap-3 lg:gap-4 mb-8 lg:mb-12">
+              <div className="h-1 w-12 lg:w-16 bg-green-500" />
+              <h2 className="text-2xl lg:text-3xl font-bold text-green-400 font-mono">FEATURED</h2>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
               {/* Private/Manual featured first */}
               {manualFeatured.map((p) => (
                 <div
                   key={p.key}
                   className={`project-card group relative overflow-hidden rounded-2xl ${theme === 'dark' ? 'bg-zinc-900 border-zinc-800' : 'bg-white border-gray-300 shadow-lg'} border hover:border-green-500/50 transition-all duration-500`}
                 >
-                  <div className={`relative h-64 overflow-hidden flex items-center justify-center ${theme === 'dark' ? 'bg-gradient-to-br from-zinc-900 via-zinc-900 to-green-950/20' : 'bg-gradient-to-br from-gray-200 via-gray-100 to-green-50/30'}`}>
-                    <IconFor name={p.title} language={p.category} />
+                  <div className={`relative h-56 lg:h-72 overflow-hidden flex items-center justify-center ${theme === 'dark' ? 'bg-gradient-to-br from-zinc-900 via-zinc-900 to-green-950/20' : 'bg-gradient-to-br from-gray-200 via-gray-100 to-green-50/30'}`}>
+                    <IconFor name={p.title} language={p.category} size={120} />
                     <div className={`absolute inset-0 ${theme === 'dark' ? 'bg-gradient-to-t from-zinc-900/30 to-transparent' : 'bg-gradient-to-t from-white/40 to-transparent'}`} />
-                    <div className="absolute top-4 right-4 px-3 py-1 bg-green-500 text-black text-xs font-bold rounded-full">
+                    <div className="absolute top-4 right-4 px-3 py-1.5 bg-green-500 text-black text-sm font-bold rounded-full">
                       {p.category}
                     </div>
                   </div>
-                  <div className="p-6 space-y-4">
+                  <div className="p-6 lg:p-8 space-y-4 lg:space-y-5">
                     <div className="flex items-start justify-between">
-                      <h3 className={`text-2xl font-bold group-hover:text-green-400 transition-colors break-all ${theme === 'dark' ? 'text-white' : 'text-black'}`}>{p.title}</h3>
-                      <span className={`text-xs font-mono ${theme === 'dark' ? 'text-gray-500' : 'text-gray-600'}`}>{p.year}</span>
+                      <h3 className={`text-xl lg:text-2xl font-bold group-hover:text-green-400 transition-colors break-words ${theme === 'dark' ? 'text-white' : 'text-black'}`}>{p.title}</h3>
+                      <span className={`text-sm font-mono ${theme === 'dark' ? 'text-gray-500' : 'text-gray-600'}`}>{p.year}</span>
                     </div>
-                    <p className={`leading-relaxed text-sm ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>{p.description}</p>
-                    <div className="flex flex-wrap gap-2 pt-2">
+                    <p className={`leading-relaxed text-sm lg:text-base ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>{p.description}</p>
+                    <div className="flex flex-wrap gap-2 lg:gap-2.5 pt-2">
                       {p.stack.map((tech, i) => (
-                        <span key={i} className={`tech-badge px-3 py-1 text-xs font-mono ${theme === 'dark' ? 'bg-black' : 'bg-white'} text-green-400 rounded-md border border-green-500/30`}>
+                        <span key={i} className={`tech-badge px-3 py-1.5 text-sm font-mono ${theme === 'dark' ? 'bg-black' : 'bg-white'} text-green-400 rounded-md border border-green-500/30`}>
                           {tech}
                         </span>
                       ))}
                     </div>
                     <div className="flex gap-3 pt-4">
-                      <span className={`flex-1 px-4 py-2 ${theme === 'dark' ? 'bg-zinc-800 text-gray-300' : 'bg-gray-200 text-gray-700'} font-semibold rounded-lg text-center`}>Private Repository</span>
+                      <span className={`flex-1 px-4 py-3 ${theme === 'dark' ? 'bg-zinc-800 text-gray-300' : 'bg-gray-200 text-gray-700'} font-semibold rounded-lg text-center`}>Private Repository</span>
                     </div>
                   </div>
                   <div className="absolute inset-0 border-2 border-green-500/0 group-hover:border-green-500/20 rounded-2xl transition-colors pointer-events-none" />
@@ -258,33 +258,33 @@ export default function ProjectsPage() {
                     className={`project-card group relative overflow-hidden rounded-2xl ${theme === 'dark' ? 'bg-zinc-900 border-zinc-800' : 'bg-white border-gray-300 shadow-lg'} border hover:border-green-500/50 transition-all duration-500`}
                   >
                     {/* Project Image */}
-                    <div className={`relative h-64 overflow-hidden flex items-center justify-center ${theme === 'dark' ? 'bg-gradient-to-br from-zinc-900 via-zinc-900 to-green-950/20' : 'bg-gradient-to-br from-gray-200 via-gray-100 to-green-50/30'}`}>
-                      <IconFor name={repo.name} language={repo.language} />
+                    <div className={`relative h-56 lg:h-72 overflow-hidden flex items-center justify-center ${theme === 'dark' ? 'bg-gradient-to-br from-zinc-900 via-zinc-900 to-green-950/20' : 'bg-gradient-to-br from-gray-200 via-gray-100 to-green-50/30'}`}>
+                      <IconFor name={repo.name} language={repo.language} size={120} />
                       <div className={`absolute inset-0 ${theme === 'dark' ? 'bg-gradient-to-t from-zinc-900/30 to-transparent' : 'bg-gradient-to-t from-white/40 to-transparent'}`} />
 
                       {/* Category badge */}
-                      <div className="absolute top-4 right-4 px-3 py-1 bg-green-500 text-black text-xs font-bold rounded-full">
+                      <div className="absolute top-4 right-4 px-3 py-1.5 bg-green-500 text-black text-sm font-bold rounded-full">
                         {repo.language || "Repo"}
                       </div>
                     </div>
 
                     {/* Project Info */}
-                    <div className="p-6 space-y-4">
+                    <div className="p-6 lg:p-8 space-y-4 lg:space-y-5">
                       <div className="flex items-start justify-between">
-                        <h3 className={`text-2xl font-bold group-hover:text-green-400 transition-colors break-all ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
+                        <h3 className={`text-xl lg:text-2xl font-bold group-hover:text-green-400 transition-colors break-words ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
                           {repo.name}
                         </h3>
-                        <span className={`text-xs font-mono ${theme === 'dark' ? 'text-gray-500' : 'text-gray-600'}`}>{new Date(repo.created_at).getFullYear()}</span>
+                        <span className={`text-sm font-mono ${theme === 'dark' ? 'text-gray-500' : 'text-gray-600'}`}>{new Date(repo.created_at).getFullYear()}</span>
                       </div>
 
-                      <p className={`leading-relaxed text-sm min-h-12 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>{repo.description || "No description provided."}</p>
+                      <p className={`leading-relaxed text-sm lg:text-base ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>{repo.description || "No description provided."}</p>
 
                       {/* Tech Stack */}
-                      <div className="flex flex-wrap gap-2 pt-2">
+                      <div className="flex flex-wrap gap-2 lg:gap-2.5 pt-2">
                         {[repo.language].filter(Boolean).map((tech, i) => (
                           <span
                             key={i}
-                            className={`tech-badge px-3 py-1 text-xs font-mono ${theme === 'dark' ? 'bg-black' : 'bg-gray-800'} text-green-400 rounded-md border border-green-500/30`}
+                            className={`tech-badge px-3 py-1.5 text-sm font-mono ${theme === 'dark' ? 'bg-black' : 'bg-white'} text-green-400 rounded-md border border-green-500/30`}
                           >
                             {tech}
                           </span>
@@ -293,10 +293,10 @@ export default function ProjectsPage() {
 
                       {/* Action buttons */}
                       <div className="flex gap-3 pt-4">
-                        <a href={repo.html_url} target="_blank" rel="noopener noreferrer" className="flex-1 text-center px-4 py-2 bg-green-500 text-black font-semibold rounded-lg hover:bg-green-400 transition-colors">
+                        <a href={repo.html_url} target="_blank" rel="noopener noreferrer" className="flex-1 text-center px-4 py-3 bg-green-500 text-black font-semibold rounded-lg hover:bg-green-400 transition-colors">
                           Open on GitHub
                         </a>
-                        <button className={`px-4 py-2 border ${theme === 'dark' ? 'border-zinc-700' : 'border-gray-300'} rounded-lg hover:border-green-500 hover:text-green-400 transition-colors`}>
+                        <button className={`px-4 py-3 border ${theme === 'dark' ? 'border-zinc-700' : 'border-gray-300'} rounded-lg hover:border-green-500 hover:text-green-400 transition-colors`}>
                           <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                           </svg>
@@ -314,9 +314,9 @@ export default function ProjectsPage() {
 
           {/* All Projects — Center Trunk Timeline */}
           <div>
-            <div className="flex items-center gap-3 mb-8">
-              <div className="h-1 w-12 bg-green-500" />
-              <h2 className="text-2xl font-bold text-green-400 font-mono">ALL PROJECTS</h2>
+            <div className="flex items-center gap-3 lg:gap-4 mb-8 lg:mb-12">
+              <div className="h-1 w-12 lg:w-16 bg-green-500" />
+              <h2 className="text-2xl lg:text-3xl font-bold text-green-400 font-mono">ALL PROJECTS</h2>
             </div>
 
             {/* Loading / Error */}
@@ -335,72 +335,36 @@ export default function ProjectsPage() {
             )}
 
             {!loading && !error && (
-              <div className="relative">
-                {/* Center trunk */}
-                <div className={`absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px ${theme === 'dark' ? 'bg-zinc-800' : 'bg-gray-300'}`} />
-                <div className="space-y-10">
-                  {timeline.map((repo, idx) => {
-                    const sideLeft = idx % 2 === 0
-                    return (
-                      <div key={repo.id} className={`grid grid-cols-[1fr_2px_1fr] items-stretch gap-6`}>
-                        {/* Left branch */}
-                        <div className={`relative ${sideLeft ? '' : 'hidden md:block'}`}>
-                          {sideLeft && (
-                            <div className="ml-auto max-w-xl">
-                              <div className={`relative project-card overflow-hidden rounded-xl ${theme === 'dark' ? 'bg-zinc-900 border-zinc-800' : 'bg-white border-gray-300 shadow-md'} border hover:border-green-500/50 transition-all duration-500 hover:-translate-y-1`}>
-                                <div className={`absolute right-0 top-1/2 -translate-y-1/2 h-px w-8 ${theme === 'dark' ? 'bg-zinc-700' : 'bg-gray-400'}`} />
-                                <div className="p-5 space-y-3">
-                                  <div className="flex items-center justify-between">
-                                    <h3 className={`text-lg font-bold group-hover:text-green-400 transition-colors break-all ${theme === 'dark' ? 'text-white' : 'text-black'}`}>{repo.name}</h3>
-                                    <span className={`text-xs font-mono ${theme === 'dark' ? 'text-gray-500' : 'text-gray-600'}`}>{new Date(repo.created_at).getFullYear()}</span>
-                                  </div>
-                                  <div className="flex items-center gap-3">
-                                    <IconFor name={repo.name} language={repo.language} size={40} />
-                                    <p className={`text-sm line-clamp-2 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>{repo.description || 'No description provided.'}</p>
-                                  </div>
-                                  <div className="flex flex-wrap gap-1.5">
-                                    {[repo.language].filter(Boolean).map((tech, i) => (
-                                      <span key={i} className={`px-2 py-0.5 text-xs font-mono ${theme === 'dark' ? 'bg-black' : 'bg-gray-800'} text-green-400 rounded border border-green-500/30`}>{tech}</span>
-                                    ))}
-                                  </div>
-                                  <a href={repo.html_url} target="_blank" rel="noopener noreferrer" className={`inline-block mt-1 px-3 py-1.5 ${theme === 'dark' ? 'bg-zinc-800 text-gray-300' : 'bg-gray-200 text-gray-700'} font-semibold rounded hover:bg-green-500 hover:text-black transition-colors text-xs`}>Open on GitHub</a>
-                                </div>
-                              </div>
-                            </div>
-                          )}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {timeline.map((repo) => (
+                  <div key={repo.id} className={`relative project-card overflow-hidden rounded-2xl ${theme === 'dark' ? 'bg-zinc-900 border-zinc-800' : 'bg-white border-gray-300 shadow-lg'} border hover:border-green-500/50 transition-all duration-500 hover:-translate-y-1 hover:shadow-xl aspect-square`}>
+                    <div className="p-6 h-full flex flex-col">
+                      <div className="space-y-4 flex-1">
+                        <div className="flex items-center justify-between">
+                          <h3 className={`text-lg font-bold group-hover:text-green-400 transition-colors break-words line-clamp-2 ${theme === 'dark' ? 'text-white' : 'text-black'}`}>{repo.name}</h3>
+                          <span className={`text-xs font-mono ${theme === 'dark' ? 'text-gray-500' : 'text-gray-600'}`}>{new Date(repo.created_at).getFullYear()}</span>
                         </div>
-                        {/* Center line gap */}
-                        <div />
-                        {/* Right branch */}
-                        <div className={`relative ${!sideLeft ? '' : 'hidden md:block'}`}>
-                          {!sideLeft && (
-                            <div className="max-w-xl">
-                              <div className={`relative project-card overflow-hidden rounded-xl ${theme === 'dark' ? 'bg-zinc-900 border-zinc-800' : 'bg-white border-gray-300 shadow-md'} border hover:border-green-500/50 transition-all duration-500 hover:-translate-y-1`}>
-                                <div className={`absolute left-0 top-1/2 -translate-y-1/2 h-px w-8 ${theme === 'dark' ? 'bg-zinc-700' : 'bg-gray-400'}`} />
-                                <div className="p-5 space-y-3">
-                                  <div className="flex items-center justify-between">
-                                    <h3 className={`text-lg font-bold group-hover:text-green-400 transition-colors break-all ${theme === 'dark' ? 'text-white' : 'text-black'}`}>{repo.name}</h3>
-                                    <span className={`text-xs font-mono ${theme === 'dark' ? 'text-gray-500' : 'text-gray-600'}`}>{new Date(repo.created_at).getFullYear()}</span>
-                                  </div>
-                                  <div className="flex items-center gap-3">
-                                    <IconFor name={repo.name} language={repo.language} size={40} />
-                                    <p className={`text-sm line-clamp-2 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>{repo.description || 'No description provided.'}</p>
-                                  </div>
-                                  <div className="flex flex-wrap gap-1.5">
-                                    {[repo.language].filter(Boolean).map((tech, i) => (
-                                      <span key={i} className={`px-2 py-0.5 text-xs font-mono ${theme === 'dark' ? 'bg-black' : 'bg-gray-800'} text-green-400 rounded border border-green-500/30`}>{tech}</span>
-                                    ))}
-                                  </div>
-                                  <a href={repo.html_url} target="_blank" rel="noopener noreferrer" className={`inline-block mt-1 px-3 py-1.5 ${theme === 'dark' ? 'bg-zinc-800 text-gray-300' : 'bg-gray-200 text-gray-700'} font-semibold rounded hover:bg-green-500 hover:text-black transition-colors text-xs`}>Open on GitHub</a>
-                                </div>
-                              </div>
-                            </div>
-                          )}
+                        <div className="flex flex-col items-center space-y-3">
+                          <IconFor name={repo.name} language={repo.language} size={48} />
+                          <p className={`text-sm leading-relaxed text-center line-clamp-3 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>{repo.description || 'No description provided.'}</p>
+                          <div className="flex flex-wrap gap-1.5 justify-center">
+                            {[repo.language].filter(Boolean).map((tech, i) => (
+                              <span key={i} className={`px-2 py-1 text-xs font-mono ${theme === 'dark' ? 'bg-black' : 'bg-gray-800'} text-green-400 rounded-md border border-green-500/30`}>{tech}</span>
+                            ))}
+                          </div>
                         </div>
                       </div>
-                    )
-                  })}
-                </div>
+                      <div className="flex gap-2 mt-4">
+                        <a href={repo.html_url} target="_blank" rel="noopener noreferrer" className={`flex-1 text-center px-3 py-2 ${theme === 'dark' ? 'bg-zinc-800 text-gray-300' : 'bg-gray-200 text-gray-700'} font-semibold rounded-lg hover:bg-green-500 hover:text-black transition-colors text-sm`}>GitHub</a>
+                        <button className={`px-3 py-2 border ${theme === 'dark' ? 'border-zinc-700' : 'border-gray-300'} rounded-lg hover:border-green-500 hover:text-green-400 transition-colors`}>
+                          <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
             )}
           </div>
